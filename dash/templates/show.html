@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/show.css' %}">
+</head>
+<body>
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Test App</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="/profile">Profile</a>
+                </div>
+                <a id="sign" class="nav-item nav-link" href="/signout">Sign Out</a>
+            </div>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <h4>{{user.fname}} {{user.lname}}</h4>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Registered at:</td>
+                    <td>{{user.created_at|date:"M j, Y"}}</td>
+                </tr>
+                <tr>
+                    <td>User ID:</td>
+                    <td>#{{user.id}}</td>
+                </tr>
+                <tr>
+                    <td>Email address:</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{user.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="message">
+            <h4>Leave a message for {{user.fname}}</h4>
+            <form action="/post_message/{{user.id}}" method=post>
+                {% csrf_token %}
+                <textarea name="message"></textarea>
+                <button type="submit">Post</button>
+            </form>
+            <div id="comment">
+                {% for m in message %}
+                    <h6 class="first"><a href="\user/show/{{m.creator.id}}">{{m.creator.fname}} {{m.creator.lname}}</a> wrote:</h6>
+                    <h6>{{m.created_at}}</h6>
+                    <div class="mess">
+                        <p>{{m.message}}</p>
+                    </div>
+                    <div class="comm">
+                        {% for c in m.comment.all %}
+                            <h6 class="second"><a href="\user/show/{{c.creator.id}}">{{c.creator.fname}} {{c.creator.lname}}</a> wrote:</h6>
+                            <h6>{{c.created_at}}</h6>
+                            <div class="reply">
+                                <p>{{c.comment}}</p>
+                            </div>
+                        {% endfor %}
+                        <form action="/post_comment/{{user.id}}" method=post>
+                            {% csrf_token %}
+                            <textarea name="comment" placeholder="write a message"></textarea>
+                            <button type="submit">Post</button>
+                            <input type="hidden" name="message" value="{{m.id}}">
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

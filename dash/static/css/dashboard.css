@@ -1,0 +1,31 @@
+
+
+#nav{
+    border-bottom: 2px solid black;
+}
+.navbar-brand{
+    margin-left: 84px;
+}
+#sign{
+    margin-left: 50%;
+    color: rgba(0,0,0,.9);
+}
+#wrapper{
+    width: 850px;
+    margin: 20px 0px 0px 100px;
+}
+h5{
+    margin: 30px 0px 20px 0px;
+}
+form, h5{
+    display: inline-block;
+    vertical-align: top;
+}
+button{
+    margin: 30px 0px 0px 636px;
+    padding: 1px 6px;
+    background-color: royalblue;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+}

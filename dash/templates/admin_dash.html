@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigin Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Test App</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="profile">Profile</a>
+                </div>
+                <a id="sign" class="nav-item nav-link" href="signout">Sign Out</a>
+            </div>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <h5>Manage Users</h5>
+        <form action="\user/new">
+          <button type="submit">Add new</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created</th>
+                <th scope="col">User Level</th>
+                <th scope="col">actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for user in users  %}
+                <tr>
+                    <th scope="row">{{user.id}}</th>
+                    <td><a href="\user/show/{{user.id}}">{{user.fname}} {{user.lname}}</a></td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created_at|date:"M j, Y"}}</td>
+                    {% if user.user_level.level == 9 %}
+                            <td>admin</td>
+                    {% endif %}
+                    {% if user.user_level.level == 5 %}
+                            <td>normal</td>
+                    {% endif %}
+                    <td><a href="\users/edit/{{user.id}}">edit</a> <a href="\user/remove/{{user.id}}">remove</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>

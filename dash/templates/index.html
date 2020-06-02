@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Test App</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                </div>
+                <a id="sign" class="nav-item nav-link" href="signin">Sign in</a>
+            </div>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <div class="jumbotron">
+            <h2 class="display-5">Welcome to the Test</h2>
+            <p class="lead">We're going to build a cool application using a MVC framework! This application was built with the Village88 folks!</p>
+            <a class="btn btn-primary btn-med" href="register" role="button">Start</a>
+          </div>
+    </div>
+    <div id="container">
+        <div class="info">
+            <h5>Manage Users</h5>
+            <h6>Using this application, you'll learn how to add, remove, and edit users for the application.</h6>
+        </div>
+        <div class="info">
+            <h5>Leave messages</h5>
+            <h6>Users will be able to leave a message to another user using this application.</h6>
+        </div>
+        <div class="info">
+            <h5>Edit User Information</h5>
+            <h6>Admins will be able to edit another user's information (email address, first name, last name, etc).</h6>
+        </div>
+    </div>
+</body>
+</html>

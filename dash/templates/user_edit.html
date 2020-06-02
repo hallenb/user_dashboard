@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Test App</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="profile">Profile</a>
+                </div>
+                <a id="sign" class="nav-item nav-link" href="signout">Sign Out</a>
+            </div>
+        </nav>
+    </div>
+    <div id="messages">
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div id="wrapper">
+        <h3>Edit user #{{user.id}}</h3>
+        <form id="info" action="\user/info/{{user.id}}" method=post>
+            {% csrf_token %}
+            <p>Edit Information</p>
+            <label>Email Address: <input type="email" name=email value="{{user.email}}"></label>
+            <label>First Name: <input type="text" name=fname value="{{user.fname}}"></label>
+            <label>Last Name: <input type="text" name=lname value="{{user.lname}}"></label>
+            <label>User Level:
+            <select name="level">
+                <option value="0" selected>No Change</option>
+                <option value="5">normal</option>
+                <option value="9">admin</option>
+            </select>
+            </label>
+            <button type="submit">Save</button>
+        </form>
+        <form action="\user/pass/{{user.id}}" method=post>
+            {% csrf_token %}
+            <p>Change Password</p>
+            <label>Password: <input type="password" name=pw></label>
+            <label>Password Confirmation: <input type="password" name=confpw></label>
+            <button type="submit">Update Password</button>
+        </form>
+    </div>
+</body>
+</html>

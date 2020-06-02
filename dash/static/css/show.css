@@ -1,0 +1,72 @@
+
+#nav{
+    border-bottom: 2px solid black;
+}
+.navbar-brand{
+    margin-left: 84px;
+}
+#sign{
+    margin-left: 50%;
+    color: rgba(0,0,0,.9);
+}
+#wrapper{
+    width: 850px;
+    margin: 20px 0px 0px 100px;
+}
+td:first-of-type{
+    width: 125px;
+}
+#message h4{
+    margin-top: 25px;
+}
+#message textarea{
+    width: 800px;
+    height: 75px;
+    border-radius: 5px;
+}
+#message button{
+    margin: 10px 0px 20px 748px;
+    padding: 1px 10px;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+h6{
+    display: inline-block;
+}
+.first{
+    width: 620px;
+}
+.second{
+    width: 570px;
+}
+.mess{
+    width: 800px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+#comment textarea{
+    width: 750px;
+    height: 60px;
+    border-radius: 5px;
+    /* margin-left: 50px; */
+    padding-left: 5px;
+}
+.comm{
+    margin-left: 50px;
+}
+#comment button{
+    margin: 10px 0px 20px 698px;
+}
+.reply{
+    width: 750px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
